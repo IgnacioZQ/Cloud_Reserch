@@ -7,6 +7,8 @@ library(ggrepel)
 library(lubridate)
 library(gifski)
 library(readr)
+library(hrbrthemes)
+library(countrycode)
 
 # Cargar Data ----
 
@@ -35,7 +37,7 @@ Dolar <- Dolar %>%
 
 New_DF <- full_join(Covid, Dolar, by = "Fecha")
 
-######## Gráfico solo Covid.
+######## Gráfico solo Covid (Connie)
 
 ggplot(data = Covid, aes(x = Fecha, y = Casos.totales)) +
   geom_point(colour = "red") +
@@ -45,7 +47,7 @@ ggplot(data = Covid, aes(x = Fecha, y = Casos.totales)) +
   scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000, 600000, 700000), labels = scales::label_number()) +
   geom_smooth(method = 'lm',formula = 'y ~ x', se = FALSE, color = "black")
 
-######## Gráfico solo Dolar.
+######## Gráfico solo Dolar (Connie)
 
 ggplot(data = Dolar, aes(x = Fecha, y = Dólar)) +
 geom_point(colour = "red") +
@@ -56,7 +58,32 @@ geom_point(colour = "red") +
   geom_smooth(method = 'lm',formula='y ~ x', se = FALSE, color = "black") +
   ylab("Valor en CLP")
 
-######## Gráfico ambos juntos.
+######## Gráfico solo Covid (Nacho)
 
+New_DF %>%
+  ggplot(aes(x = Fecha, y = Casos.totales)) +
+  geom_area(size = 1, fill = "gold", color = "gold", alpha = 0.4) +
+  labs(title = paste0("COVID-19 en Chile"), 
+       subtitle = paste0("2020") , 
+       caption = "Fuente: Base de Datos COVID-19 del Ministerio de Ciencia, Tecnología, Conocimiento e Innovación.", 
+       y = "N° de Casos", 
+       x = "Fecha") +
+  scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000, 600000), labels = scales::label_number()) +
+  theme_minimal()
 
+######## Gráfico solo Dolar (Nacho)
+
+New_DF_na_omit <- na.omit(New_DF)
+
+New_DF_na_omit %>%
+  ggplot(aes(x = Fecha, y = Dólar)) +
+  geom_line(color = "gold", alpha = 0.8, size = 1) +
+  labs(title = paste0("Dolar en Chile"), 
+       subtitle = paste0("2020") , 
+       caption = "Fuente: Base de Datos Estadísticos. Banco Central de Chile.", 
+       y = "Dolar en CLP", 
+       x = "Fecha") +
+  scale_y_continuous(labels = scales::dollar_format(), breaks = c(750, 800, 850)) +
+  theme_minimal() +
+  geom_smooth(se = F, color = "sandybrown", size = 0.8)
 
