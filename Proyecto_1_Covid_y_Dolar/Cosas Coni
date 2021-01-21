@@ -1,1 +1,34 @@
+Dolar=na.omit(dolar)
+View(Dolar)
+
+g= ggplot(Dolar, aes(x=Fecha, y=Dólar)) + 
+  geom_point(size=0.4, col="white")+
+  geom_line(alpha=1, color="red", size=0.5) +
+  labs(x="Fecha", y="Precio en CLP",
+       title = paste("Dólar en Chile\nAño 2020"),
+       caption = "Fuente: Banco Central") +
+  theme_modern_rc(base_family = "Roboto Condensed")
+g
+### COVID ###
+
+c= ggplot(covid, aes(x=Fecha, y=Casos.totales)) +
+  geom_line(alpha=1, color="red", size=0.5)+
+  labs(x="Periodo", y="Casos totales",
+       title = paste("Casos totales de covid\naño 2020"))+
+  theme_modern_rc(base_family = "Roboto Condensed") +
+  scale_y_comma(big.mark = ".", breaks = waiver(), n.breaks = 10)
+c
+### GRAFICO QUE COMPARA AMBAS DATAS ###
+d= ggplot(data = datas,
+       mapping = aes(x = Fecha,
+                     y = Dólar,
+                     color = Casos.totales)) +
+  geom_line() +
+  labs(x="Periodo", y="Precio del dólar en CLP", 
+       title = "Covid y Dólar\n2020") +
+  theme_modern_rc(base_family = "Roboto Condensed")+
+  scale_color_gradientn(colors = c("yellow","red")) +
+  scale_x_date(date_labels = "%d/%m", date_breaks= "2 month")
+d
+
 
