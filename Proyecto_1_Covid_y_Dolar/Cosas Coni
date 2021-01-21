@@ -30,5 +30,32 @@ d= ggplot(data = datas,
   scale_color_gradientn(colors = c("yellow","red")) +
   scale_x_date(date_labels = "%d/%m", date_breaks= "2 month")
 d
+#### GRAFICO IINTERACTIVO ####
+
+#Packages
+install.packages("gganimate")
+install.packages("gifski")
+install.packages("hrbrthemes")
+
+# libraries:
+library(ggplot2)
+library(gganimate)
+library(hrbrthemes)
+library(dplyr)
+library(gifski)
+
+# Plot
+gif=dolar %>%
+  ggplot( aes(x=Periodo, y=Dólar)) +
+  geom_line() +
+  ggtitle("Dólar en Chile 2020") +
+  theme_ft_rc () +
+  transition_reveal(Periodo)+ 
+  ylab("Valor en CLP")+
+gif
+file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE)
+
+# Save at gif:
+anim_save("Dolar_en_Chile_2020.gif")
 
 
