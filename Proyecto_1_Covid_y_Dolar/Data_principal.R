@@ -1,6 +1,6 @@
 # Librerias ----
 
-library(RCurl)
+{library(RCurl)
 library(readxl)
 library(tidyverse)
 library(ggrepel)
@@ -8,13 +8,13 @@ library(lubridate)
 library(gifski)
 library(readr)
 library(hrbrthemes)
-library(countrycode)
+library(countrycode)}
 
 # Cargar Data ----
 
-Covid <- read.csv("https://raw.githubusercontent.com/IgnacioZQ/Cloud_Reserch/main/Proyecto_1_Covid_y_Dolar/covid.csv", fileEncoding = "UTF-8-BOM", stringsAsFactors = FALSE)
+{Covid <- read.csv("https://raw.githubusercontent.com/IgnacioZQ/Cloud_Reserch/main/Proyecto_1_Covid_y_Dolar/covid.csv", fileEncoding = "UTF-8-BOM", stringsAsFactors = FALSE)
 
-Dolar = read_excel("Dolar.xls")
+Dolar = read_excel("Dolar.xls")}
 
 # Manipular Data
 
@@ -73,7 +73,8 @@ New_DF %>%
 
 ######## Gráfico solo Dolar (Nacho)
 
-New_DF_na_omit <- na.omit(New_DF)
+New_DF_na_omit <- na.omit(New_DF) # Eliminar valores vacios en la DF
+New_DF_na_omit$Fecha <- as.Date(as.character(New_DF_na_omit$Fecha))
 
 New_DF_na_omit %>%
   ggplot(aes(x = Fecha, y = Dólar)) +
