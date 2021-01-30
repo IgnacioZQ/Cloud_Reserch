@@ -79,11 +79,11 @@ New_DF_na_omit$Fecha <- as.Date(as.character(New_DF_na_omit$Fecha))
 New_DF_na_omit %>%
   ggplot(aes(x = Fecha, y = Dólar)) +
   geom_line(color = "gold", alpha = 0.8, size = 1) +
-  labs(title = paste0("Dolar en Chile"), 
-       subtitle = paste0("2020") , 
-       caption = "Fuente: Base de Datos Estadísticos. Banco Central de Chile.", 
-       y = "Dolar en CLP", 
-       x = "Fecha") +
+  labs(title = paste0(""), 
+       subtitle = paste0("") , 
+       caption = "", 
+       y = "", 
+       x = "") +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(750, 800, 850)) +
   theme_minimal() +
   geom_smooth(se = F, color = "sandybrown", size = 0.8)
