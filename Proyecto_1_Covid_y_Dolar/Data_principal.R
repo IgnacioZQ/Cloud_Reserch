@@ -63,11 +63,11 @@ geom_point(colour = "red") +
 New_DF %>%
   ggplot(aes(x = Fecha, y = Casos.totales)) +
   geom_area(size = 1, fill = "gold", color = "gold", alpha = 0.4) +
-  labs(title = paste0("COVID-19 en Chile"), 
-       subtitle = paste0("2020") , 
-       caption = "Fuente: Base de Datos COVID-19 del Ministerio de Ciencia, Tecnología, Conocimiento e Innovación.", 
-       y = "N° de Casos", 
-       x = "Fecha") +
+  labs(title = paste0(""), 
+       subtitle = paste0("") , 
+       caption = "", 
+       y = "", 
+       x = "") +
   scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000, 600000), labels = scales::label_number()) +
   theme_minimal()
 
